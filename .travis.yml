@@ -5,3 +5,12 @@ services:
 script: 
   - docker build -t yoimer/node .
   - docker images yoimer/node
+
+before_deploy:
+  - docker login -u yoimer -p ragnar30*
+
+deploy:
+  provider: script
+  script: docker push yoimer/node
+  on:
+    branch: master
